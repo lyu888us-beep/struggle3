@@ -12,3 +12,5 @@ class_name = "RongyuStore"
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["RongyuStore"]
+[vars]
+CUSTOMER_PUBLIC_URL = "https://struggle3.pages.dev"
