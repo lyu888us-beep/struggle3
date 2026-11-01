@@ -1,0 +1,17 @@
+{
+  "name": "rongyu-cloudflare-pwa-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"build": "vite build --config vite.config.mjs && node scripts/prepare.mjs"},
+  "dependencies": {
+    "jszip": "3.10.2",
+    "lucide-react": "0.468.0",
+    "qrcode.react": "4.2.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "7.18.5"
+  },
+  "devDependencies": {"vite": "8.3.5"},
+  "engines": {"node": ">=22.0.0"}
+}
