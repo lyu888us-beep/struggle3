@@ -1,0 +1,28 @@
+name: Deploy isolated email test backend
+
+# Manual only: never deploy on a push or pull request.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/arena/663b9257-struggle3'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test backend dependencies
+        working-directory: 蓉渝康养行_顾客端_Cloudflare部署包/backend
+        run: npm ci
+      - name: Deploy only the isolated test Worker
+        working-directory: 蓉渝康养行_顾客端_Cloudflare部署包/backend
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.ISOLATED_TEST_WORKER_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --config ../../isolated-email-test/backend/wrangler.toml
