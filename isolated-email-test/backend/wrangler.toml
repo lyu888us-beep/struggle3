@@ -3,7 +3,8 @@ name = "rongyu-email-isolated-test"
 main = "../../蓉渝康养行_顾客端_Cloudflare部署包/backend/src/index.mjs"
 compatibility_date = "2026-10-30"
 compatibility_flags = ["nodejs_compat"]
-workers_dev = true
+workers_dev = false
+preview_urls = false
 
 [[durable_objects.bindings]]
 name = "STORE"
