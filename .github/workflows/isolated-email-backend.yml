@@ -1,8 +1,12 @@
-name: Deploy isolated email test backend
+name: Deploy isolated email test backend (trigger file)
 
-# Manual only: never deploy on a push or pull request.
+# Deploy only when the explicit trigger file changes on the session branch.
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - arena/663b9257-struggle3
+    paths:
+      - isolated-email-test/backend/deploy-trigger.txt
 
 permissions:
   contents: read
