@@ -1,0 +1,8 @@
+# Isolated Pages project, bound exclusively to the test Worker.
+name = "rongyu-email-isolated-frontend"
+pages_build_output_dir = "../../蓉渝康养行_顾客端_Cloudflare部署包/frontend/public"
+compatibility_date = "2026-10-30"
+
+[[services]]
+binding = "BACKEND"
+service = "rongyu-email-isolated-test"

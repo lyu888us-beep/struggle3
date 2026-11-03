@@ -2,6 +2,7 @@ import React,{useCallback,useEffect,useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {BrowserRouter,Routes,Route,Navigate,useLocation,Link} from 'react-router-dom';
 import {AuthContext,ToastProvider,api,AppShell,Loading,Empty} from './shared';
+import {EmailRecoveryRequest,EmailAction} from './email-recovery';
 import {AuthPage,Dashboard,Bookings,Records,Journal,Subscriptions,Health,SOS,Profile} from './customer-core';
 import {Hospitals,Therapies,Recipes,Knowledge,Article,Trips,Download} from './customer-content';
 import {Admin} from './admin';
@@ -27,7 +28,7 @@ function Protected({children}){
 function AdminRoute(){const {loading,error}=React.useContext(AuthContext);if(loading)return <div className="center-screen"><Loading/></div>;if(error)return <div className="center-screen"><Loading error={error}/><Link to="/admin/offline-vault" className="text-link">打开本机离线档案</Link></div>;return <Admin/>}
 function App(){
  useEffect(()=>{if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{})},[]);
- return <Routes><Route path="/tcm" element={<PublicTcm/>}/><Route path="/login" element={<AuthPage/>}/><Route path="/register" element={<AuthPage register/>}/><Route path="/download" element={<Download/>}/><Route path="/offline-vault" element={<OfflineArchive/>}/><Route path="/admin/offline-vault" element={<OfflineArchive mode="admin"/>}/><Route path="/admin" element={<AdminRoute/>}/>
+ return <Routes><Route path="/tcm" element={<PublicTcm/>}/><Route path="/login" element={<AuthPage/>}/><Route path="/forgot-password" element={<EmailRecoveryRequest/>}/><Route path="/email-action" element={<EmailAction/>}/><Route path="/register" element={<AuthPage register/>}/><Route path="/download" element={<Download/>}/><Route path="/offline-vault" element={<OfflineArchive/>}/><Route path="/admin/offline-vault" element={<OfflineArchive mode="admin"/>}/><Route path="/admin" element={<AdminRoute/>}/>
  <Route path="/messages" element={<Protected><CustomerMessages/></Protected>}/><Route path="/dashboard" element={<Protected><Dashboard/></Protected>}/><Route path="/bookings" element={<Protected><Bookings/></Protected>}/><Route path="/records" element={<Protected><Records/></Protected>}/><Route path="/journal" element={<Protected><Journal/></Protected>}/><Route path="/subscriptions" element={<Protected><Subscriptions/></Protected>}/><Route path="/health" element={<Protected><Health/></Protected>}/><Route path="/sos" element={<Protected><SOS/></Protected>}/><Route path="/profile" element={<Protected><Profile/></Protected>}/><Route path="/hospitals" element={<Protected><Hospitals/></Protected>}/><Route path="/therapies" element={<Protected><Therapies/></Protected>}/><Route path="/recipes" element={<Protected><Recipes/></Protected>}/><Route path="/knowledge" element={<Protected><Knowledge/></Protected>}/><Route path="/knowledge/:id" element={<Protected><Article/></Protected>}/><Route path="/trips" element={<Protected><Trips/></Protected>}/>
  <Route path="*" element={<div className="center-screen"><Empty title="页面不存在" action={<a href="/" className="text-link">返回首页</a>}/></div>}/></Routes>
 }

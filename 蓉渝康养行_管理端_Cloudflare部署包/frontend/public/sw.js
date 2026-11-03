@@ -1,5 +1,5 @@
 /* Cache public assets and app shells only. Private APIs are never cached. */
-const V='rongyu-cloudflare-v12',STATIC=V+'-static',PAGES=V+'-pages',IMAGES=V+'-images';
+const V='rongyu-cloudflare-v13',STATIC=V+'-static',PAGES=V+'-pages',IMAGES=V+'-images';
 const PUBLIC=['/','/medical','/tcm','/recovery','/travel','/offline'];
 const SHELLS=['/offline-vault','/admin/offline-vault'];
 const PRECACHE=['/offline','/manifest.webmanifest','/admin.webmanifest','/icons/icon-192.png','/icons/icon-512.png','/icons/admin-192.png','/icons/admin-512.png','/i18n/lang.js','/i18n/en.json'];

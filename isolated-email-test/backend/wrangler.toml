@@ -1,0 +1,19 @@
+# Dedicated test Worker and Durable Object namespace; never use production secrets.
+name = "rongyu-email-isolated-test"
+main = "../../蓉渝康养行_顾客端_Cloudflare部署包/backend/src/index.mjs"
+compatibility_date = "2026-10-30"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[[durable_objects.bindings]]
+name = "STORE"
+class_name = "RongyuStore"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RongyuStore"]
+
+[vars]
+# Must be replaced by the dedicated test frontend URL before enabling email.
+CUSTOMER_PUBLIC_URL = "https://example.test"
+EMAIL_RECOVERY_ENABLED = "0"
